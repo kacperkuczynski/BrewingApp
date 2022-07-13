@@ -1,0 +1,127 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodaj receptrurę</title>
+    <!-- CSS only -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<tbody>
+<div class="container">
+    <h2>Dodaj receptrurę</h2>
+    <hr/>
+    <form th:action="@{/recipeDto/saveRecipe}" th:object="${recipe}" method="POST">
+        <div class="form-group row">
+            <label for="brewingNumber" class="col-sm-3 col-form-label">Styl</label>
+            <div class="col-sm-3 mb-4">
+                <input type="text" th:field="*{style}"  class="form-control col-4 mb-4"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+        <label for="brewingNumber" class="col-sm-3 col-form-label">Oczekiwany rozmiar warki</label>
+            <div class="col-sm-3 mb-4">
+                <input type="text" class="form-control" th:field="*{finalVolume}"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="brewingNumber" class="col-sm-3 col-form-label">Czas gotowania</label>
+            <div class="col-sm-3 mb-4">
+                <input type="text" th:field="*{timeBoiling}" class="form-control col-4 mb-4"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="brewingNumber" class="col-sm-3 col-form-label">Odparowanie</label>
+            <div class="col-sm-3 mb-4">
+                <input type="text" th:field="*{evaporationRate}" class="form-control col-4 mb-4"/>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="brewingNumber" class="col-sm-3 col-form-label">Straty z gotowania</label>
+            <div class="col-sm-3 mb-4">
+                 <input type="datetime-local" th:field="*{dateRecipe}" class="form-control col-4 mb-4"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="brewingNumber" class="col-sm-3 col-form-label">Ilosc gotowanej brzeczki</label>
+            <div class="col-sm-3 mb-4">
+                <input th:field="*{amountWortBoiled}" class="form-control col-4 mb-4"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="brewingNumber" class="col-sm-3 col-form-label">Gęstość przed gotowaniem</label>
+            <div class="col-sm-3 mb-4">
+                 <input type="text" th:field="*{preCookingExtract}" class="form-control col-4 mb-4"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="brewingNumber" class="col-sm-3 col-form-label">Ilość brzeczki nastawnej</label>
+            <div class="col-sm-3 mb-4">
+                <input type="text" th:field="*{amountAdjustableWort}" class="form-control col-4 mb-4"/>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Dodaj recepturę</button>
+        <input type="hidden" th:field="*{id}"/>
+    </form>
+
+<!--    <h2>Dodaj surowiec</h2>-->
+<!--    <hr/>-->
+<!--    <form th:action="@{/recipeDto/saveRecipe}" th:object="${recipe}" method="POST">-->
+
+
+<!--        <div class="form-group row">-->
+<!--            <label for="brewingNumber" class="col-sm-3 col-form-label">Surowiec</label>-->
+<!--            <div class="col-sm-3 mb-4">-->
+<!--                <select th:field="*{listIngredients}" class="form-control" required>-->
+<!--                    <th:block th:each="mat : ${rawMaterials}">-->
+<!--                        <option th:text="${mat.type}" th:value="${mat.id}"/>-->
+<!--                    </th:block>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--        <div class="form-group row">-->
+<!--            <label for="brewingNumber" class="col-sm-3 col-form-label">Nazwa</label>-->
+<!--            <div class="col-sm-3 mb-4">-->
+<!--                <select th:field="*{listIngredients}" class="form-control" required>-->
+<!--                    <th:block th:each="mat : ${rawMaterials}">-->
+<!--                        <option th:text="${mat.name}" th:value="${mat.id}"/>-->
+<!--                    </th:block>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="form-group row">-->
+<!--            <label for="brewingNumber" class="col-sm-3 col-form-label">Jednostka Mairy</label>-->
+<!--            <div class="col-sm-3 mb-4">-->
+<!--                <select th:field="*{listIngredients}" class="form-control" required>-->
+<!--                    <th:block th:each="mat : ${rawMaterials}">-->
+<!--                        <option th:text="${mat.unitMeasure}" th:value="${mat.id}"/>-->
+<!--                    </th:block>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+<!--        <div class="form-group row">-->
+<!--            <label for="brewingNumber" class="col-sm-3 col-form-label">Ilość</label>-->
+<!--            <div class="col-sm-3 mb-4">-->
+<!--                <input th:field="*{listIngredients}" class="form-control" required>-->
+<!--                    <tr th:each="mat : ${listIngredients}"th:number="${mat.amount}" step="10" th:value="${mat.id}">-->
+<!--                        <td th:number="${mat.amount}" step="10" th:value="${mat.id}"/>-->
+<!--                    </tr>-->
+<!--                </input>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--<button class="btn btn-primary" type="submit">Zapisz</button>-->
+<!--<input type="hidden" th:field="*{id}"/>-->
+<!--</form>-->
+</div>
+<hr/>
+<a th:href="@{/recipeDto/listRecipe}" class="btn">Wróć do receptur</a>
+</tbody>
+</html>

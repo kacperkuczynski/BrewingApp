@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodaj słód</title>
+    <!-- CSS only -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Dodaj rozlew</h2>
+    <hr/>
+    <form th:action="@{/bottling/saveBottling}" th:object="${bottle}" method="POST">
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Numer zbiornika</label>
+            <div class="col-sm-3 mb-4">
+                <input type="text" class="form-control" th:field="*{tankNumber}" placeholder="Wpisz numer zbiornika"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Styl</label>
+            <div class="col-sm-3 mb-4">
+                <input type="text" th:field="*{style}" placeholder="Wpisz styl piwa" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Całkowita ilość [hl]</label>
+            <div class="col-sm-3 mb-4">
+                <input type="text" th:field="*{startAmount}" placeholder="Wpisz całkowitą ilość" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Obecna ilość [hl]</label>
+            <div class="col-sm-3 mb-4">
+                <input type="text" th:field="*{stayed}" placeholder="Wpisz obecną ilość" class="form-control">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label">Pusty</label>
+            <div class="col-sm-3 mb-4">
+                <input type="checkbox" th:field="*{reset}" th:value="true" class="form-control" >Tak
+                <input type="checkbox" th:field="*{reset}" th:value="false" class="form-control" >Nie
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Zapisz</button>
+        <input type="hidden" th:field="*{id}"/>
+    </form>
+    <hr/>
+    <a th:href="@{/bottling/listBottling}" class="btn">Wróć do listy rozlewu</a>
+</div>
+</body>
+</html>

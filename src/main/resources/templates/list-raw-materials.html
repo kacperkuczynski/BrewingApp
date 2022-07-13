@@ -1,0 +1,74 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Lista surowców</title>
+  <!-- CSS only -->
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+<body>
+<!--create navigation bar (header)-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed"
+              data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+              aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" th:href="@{/}">Browar Złota Woda</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/rawMaterial/list}">Surowce</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/recipeDto/listRecipe}">Receptury</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/bottling/listBottling}">Rozlew</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+<div class="container">
+  <h2>Lista surowców</h2>
+  <hr/>
+  <a th:href="@{/rawMaterial/addRawMaterialForm}" class="btn btn-primary mb-2">Dodaj surowiec</a>
+  <table class="table table-bordered table-striped" id="rawMaterial-Table">
+    <thead>
+    <tr>
+      <th>Typ</th>
+      <th>Nazwa </th>
+      <th>Jednostka miary</th>
+      <th>Działanie</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="rawMaterial: ${materials}">
+      <td th:text="${rawMaterial.type}"></td>
+      <td th:text="${rawMaterial.name}"></td>
+      <td th:text="${rawMaterial.unitMeasure}"></td>
+      <td>
+        <a th:href="@{/rawMaterial/updateDetails(materialId=${rawMaterial.id})}" class="btn btn-info">Szczegóły</a>
+        <a th:href="@{/rawMaterial/deleteRawMaterial(materialId=${rawMaterial.id})}" class="btn btn-danger ml-2">Usuń</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $("#rawMaterial-Table").DataTable();
+  })
+</script>
+<hr/>
+<a th:href="@{/}" class="btn">Wróć do strony głównej</a>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dodaj Rozlew</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>Dodaj rozlew</h2>
+    <hr/>
+    <form th:action="@{/bottling/saveBottling}" th:object="${bottle}" method="POST">
+        <div class="form-group row">
+
+            <input type="hidden" th:field="*{tankNumber}" />
+
+            <input type="hidden" th:field="*{style}"/>
+
+            <input type="hidden" th:field="*{startAmount}"/>
+
+            <input type="hidden" th:field="*{reset}"/>
+
+            <div class="form-group row">
+                <label for="amount" class="col-sm-2 col-form-label">Pozostała ilość</label>
+                <div class="col-sm-2 mb-4">
+                    <input type="text" th:field="*{stayed}" placeholder="Wpisz pozostałą ilość" class="form-control">
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Zapisz</button>
+        <input type="hidden" th:field="*{id}"/>
+    </form>
+    <hr/>
+    <a th:href="@{/bottling/listBottling}">Wróć do listy rozlewu</a>
+</div>
+</body>
+</html>
